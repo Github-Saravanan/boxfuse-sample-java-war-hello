@@ -57,7 +57,7 @@
 
 <p>Say goodbye to snowflake servers.</p>
 <p><strong>Enjoy Boxfuse!</strong></p>
- <p>Production stage</p>
+ <p>Staging 1</p>
 <% } %>
 </body>
 </html>
