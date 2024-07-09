@@ -79,7 +79,7 @@ data "aws_iam_instance_profile" "example" {
 }
 
 data "aws_iam_role" "example" {
-  name = "EBS-Access-Role"
+  name = "aws-elasticbeanstalk-service-role"
 }
 
 resource "aws_elastic_beanstalk_application" "tf-test" {
