@@ -1,1 +1,17 @@
 
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  MAVEN_OPTS: '-Xmx1024m'
+
+
+stages:
+- stage: Build
+  jobs:
+  - job: Build
+    steps:
+    - task: UseJava@1
+      inputs:
+        versionSpec: '11'
+        jdkArchitectureOption: 'x64'
