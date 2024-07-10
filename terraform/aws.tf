@@ -1,7 +1,7 @@
 resource "aws_vpc" "tf_vpc" {
   cidr_block = var.vpc_cidr
   tags = {
-    Name = "tf_vpc-1"
+    Name = "tf_vpc"
   }
 }
 
@@ -29,7 +29,7 @@ resource "aws_subnet" "tf_subnet_2" {
 resource "aws_internet_gateway" "tf_igw" {
   vpc_id = aws_vpc.tf_vpc.id
   tags = {
-    Name = "tf_igw_1"
+    Name = "tf_igw"
   }
 }
 
@@ -37,7 +37,7 @@ resource "aws_internet_gateway" "tf_igw" {
 resource "aws_route_table" "tf_route_table" {
   vpc_id = aws_vpc.tf_vpc.id
   tags = {
-    Name = "tf_route_table_1"
+    Name = "tf_route_table"
   }
 }
 
@@ -69,7 +69,7 @@ resource "aws_nat_gateway" "tf_nat_gateway" {
   allocation_id = aws_eip.tf_eip.id
   subnet_id     = aws_subnet.tf_subnet_1.id
   tags = {
-    Name = "tf_nat_gateway_1"
+    Name = "tf_nat_gateway"
   }
 }
 
