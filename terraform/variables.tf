@@ -25,16 +25,6 @@ variable "subnet_2_cidr" {
   type        = string
 }
 
-variable "availability_zone_1" {
-  description = "Availability Zone for the first Subnet"
-  type        = string
-}
-
-variable "availability_zone_2" {
-  description = "Availability Zone for the second Subnet"
-  type        = string
-}
-
 variable "instance_type" {
   description = "Instance type for Elastic Beanstalk"
   type        = string
