@@ -35,11 +35,6 @@ variable "availability_zone_2" {
   type        = string
 }
 
-variable "language" {
-  description = "Solution stack name language for Elastic Beanstalk"
-  type        = string
-}
-
 variable "instance_type" {
   description = "Instance type for Elastic Beanstalk"
   type        = string
