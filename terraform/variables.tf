@@ -62,3 +62,15 @@ variable "instance_type" {
   type        = string 
   default     = local.secrets["instance_type"]
 }
+
+variable "language" {
+  description = "Solution stack name language for Elastic Beanstalk"
+  type        = string
+  default     = local.secrets["application_name"]
+}
+
+variable "instance_type" {
+  description = "Instance type for Elastic Beanstalk"
+  type        = string 
+  default     = local.secrets["environment_name"]
+}
