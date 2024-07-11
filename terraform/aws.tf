@@ -90,7 +90,7 @@ resource "aws_elastic_beanstalk_application" "tf-test" {
 resource "aws_elastic_beanstalk_environment" "tf-test-env" {
   name                = "javaapplicationenv"
   application         = aws_elastic_beanstalk_application.tf-test.name
-  solution_stack_name = "64bit Amazon Linux 2 v4.5.3 running Tomcat 9 Corretto 8"
+  solution_stack_name = "64bit Amazon Linux 2 v4.5.3 running ${var.language}"
   tier                = "WebServer"
   
   setting {
