@@ -3,74 +3,58 @@ data "aws_secretsmanager_secret_version" "creds" {
 }
 
 locals {
-  db_creds = jsondecode(
-    data.aws_secretsmanager_secret_version.creds.secret_string
-  )
+  db_creds = jsondecode(data.aws_secretsmanager_secret_version.creds.secret_string)
+}
+
+locals {
+  aws_region           = local.db_creds["aws_region"]
+  vpc_cidr             = local.db_creds["vpc_cidr"]
+  subnet_1_cidr        = local.db_creds["subnet_1_cidr"]
+  subnet_2_cidr        = local.db_creds["subnet_2_cidr"]
+  instance_type        = local.db_creds["instance_type"]
+  availability_zone_1  = local.db_creds["availability_zone_1"]
+  availability_zone_2  = local.db_creds["availability_zone_2"]
+  language             = local.db_creds["language"]
+  application_name     = local.db_creds["application_name"]
+  environment_name     = local.db_creds["environment_name"]
 }
 
 variable "aws_region" {
   description = "Value for AWS Region"
   type        = string
-  default     = local.secrets["aws_region"]
 }
 
 variable "vpc_cidr" {
   description = "CIDR block for the VPC"
   type        = string
-  default     = local.secrets["vpc_cidr"]
 }
 
 variable "subnet_1_cidr" {
   description = "CIDR block for the first Subnet"
   type        = string
-  default     = local.secrets["subnet_1_cidr"]
 }
 
 variable "subnet_2_cidr" {
   description = "CIDR block for the second Subnet"
   type        = string
-  default     = local.secrets["subnet_2_cidr"]
 }
 
 variable "instance_type" {
   description = "Instance type for Elastic Beanstalk"
   type        = string
-  default     = local.secrets["instance_type"]
 }
-
 
 variable "availability_zone_1" {
   description = "Availability Zone for the first Subnet"
   type        = string
-  default     = local.secrets["availability_zone_1"]
 }
 
 variable "availability_zone_2" {
   description = "Availability Zone for the second Subnet"
   type        = string
-  default     = local.secrets["availability_zone_2"]
 }
 
 variable "language" {
   description = "Solution stack name language for Elastic Beanstalk"
   type        = string
-  default     = local.secrets["language"]
-}
-
-variable "instance_type" {
-  description = "Instance type for Elastic Beanstalk"
-  type        = string 
-  default     = local.secrets["instance_type"]
-}
-
-variable "language" {
-  description = "Solution stack name language for Elastic Beanstalk"
-  type        = string
-  default     = local.secrets["application_name"]
-}
-
-variable "instance_type" {
-  description = "Instance type for Elastic Beanstalk"
-  type        = string 
-  default     = local.secrets["environment_name"]
 }
