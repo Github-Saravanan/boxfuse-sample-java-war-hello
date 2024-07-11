@@ -83,12 +83,12 @@ data "aws_iam_role" "example" {
 }
 
 resource "aws_elastic_beanstalk_application" "tf-test" {
-  name        = "javaapplication"
+  name        = var.application_name
   description = "Testing tf-elb"
 }
 
 resource "aws_elastic_beanstalk_environment" "tf-test-env" {
-  name                = "javaapplicationenv"
+  name                = var.environment_name
   application         = aws_elastic_beanstalk_application.tf-test.name
   solution_stack_name = "64bit Amazon Linux 2 v4.5.3 running ${var.language}"
   tier                = "WebServer"
