@@ -10,6 +10,7 @@ locals {
 
 variable "aws_region" {
   description = "Value for AWS Region"
+  type        = string
   default     = local.secrets["aws_region"]
 }
 
