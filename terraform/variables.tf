@@ -12,8 +12,6 @@ locals {
   subnet_1_cidr        = local.eb_creds["subnet_1_cidr"]
   subnet_2_cidr        = local.eb_creds["subnet_2_cidr"]
   instance_type        = local.eb_creds["instance_type"]
-  availability_zone_1  = local.eb_creds["availability_zone_1"]
-  availability_zone_2  = local.eb_creds["availability_zone_2"]
   language             = local.eb_creds["language"]
   application_name     = local.eb_creds["application_name"]
   environment_name     = local.eb_creds["environment_name"]
@@ -44,17 +42,17 @@ variable "instance_type" {
   type        = string
 }
 
-variable "availability_zone_1" {
-  description = "Availability Zone for the first Subnet"
-  type        = string
-}
-
-variable "availability_zone_2" {
-  description = "Availability Zone for the second Subnet"
-  type        = string
-}
-
 variable "language" {
   description = "Solution stack name language for Elastic Beanstalk"
+  type        = string
+}
+
+variable "application_name" {
+  description = "Application for Elastic Beanstalk"
+  type        = string
+}
+
+variable "environment_name" {
+  description = "Environment for Elastic Beanstalk"
   type        = string
 }
