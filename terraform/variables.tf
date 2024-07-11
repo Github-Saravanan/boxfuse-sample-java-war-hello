@@ -13,8 +13,7 @@ locals {
   subnet_2_cidr        = local.eb-creds-tf["subnet_2_cidr"]
   instance_type        = local.eb-creds-tf["instance_type"]
   language             = local.eb-creds-tf["language"]
-  application_name     = local.eb-creds-tf["application_name"]
-  environment_name     = local.eb-creds-tf["environment_name"]
+
 }
 
 variable "aws_region" {
@@ -47,12 +46,3 @@ variable "language" {
   type        = string
 }
 
-variable "application_name" {
-  description = "Application for Elastic Beanstalk"
-  type        = string
-}
-
-variable "environment_name" {
-  description = "Environment for Elastic Beanstalk"
-  type        = string
-}
