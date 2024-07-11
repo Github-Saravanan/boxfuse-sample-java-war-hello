@@ -9,7 +9,7 @@ resource "aws_vpc" "tf_vpc" {
 resource "aws_subnet" "tf_subnet_1" {
   vpc_id            = aws_vpc.tf_vpc.id
   cidr_block        = var.subnet_1_cidr
-  availability_zone = "us-east-1a"
+  availability_zone = "us-west-1a"
   tags = {
     Name = "tf_subnet_1"
   }
@@ -19,7 +19,7 @@ resource "aws_subnet" "tf_subnet_1" {
 resource "aws_subnet" "tf_subnet_2" {
   vpc_id            = aws_vpc.tf_vpc.id
   cidr_block        = var.subnet_2_cidr
-  availability_zone = "us-east-1b"
+  availability_zone = "us-west-1b"
   tags = {
     Name = "tf_subnet_2"
   }
