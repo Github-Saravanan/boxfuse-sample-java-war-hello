@@ -1,20 +1,20 @@
 data "aws_secretsmanager_secret_version" "creds" {
-  secret_id = "eb-creds-tf"
+  secret_id = "eb_creds"
 }
 
 locals {
-  eb_creds = jsondecode(data.aws_secretsmanager_secret_version.creds.secret_string)
+  eb-creds-tf = jsondecode(data.aws_secretsmanager_secret_version.creds.secret_string)
 }
 
 locals {
-  aws_region           = local.eb_creds["aws_region"]
-  vpc_cidr             = local.eb_creds["vpc_cidr"]
-  subnet_1_cidr        = local.eb_creds["subnet_1_cidr"]
-  subnet_2_cidr        = local.eb_creds["subnet_2_cidr"]
-  instance_type        = local.eb_creds["instance_type"]
-  language             = local.eb_creds["language"]
-  application_name     = local.eb_creds["application_name"]
-  environment_name     = local.eb_creds["environment_name"]
+  aws_region           = local.eb-creds-tf["aws_region"]
+  vpc_cidr             = local.eb-creds-tf["vpc_cidr"]
+  subnet_1_cidr        = local.eb-creds-tf["subnet_1_cidr"]
+  subnet_2_cidr        = local.eb-creds-tf["subnet_2_cidr"]
+  instance_type        = local.eb-creds-tf["instance_type"]
+  language             = local.eb-creds-tf["language"]
+  application_name     = local.eb-creds-tf["application_name"]
+  environment_name     = local.eb-creds-tf["environment_name"]
 }
 
 variable "aws_region" {
