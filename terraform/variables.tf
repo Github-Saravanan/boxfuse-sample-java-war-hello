@@ -7,7 +7,7 @@ locals {
 }
 
 locals {
-  aws_region           = local.eb-creds-tf["aws_region"]
+
   vpc_cidr             = local.eb-creds-tf["vpc_cidr"]
   subnet_1_cidr        = local.eb-creds-tf["subnet_1_cidr"]
   subnet_2_cidr        = local.eb-creds-tf["subnet_2_cidr"]
@@ -16,10 +16,6 @@ locals {
 
 }
 
-variable "aws_region" {
-  description = "Value for AWS Region"
-  type        = string
-}
 
 variable "vpc_cidr" {
   description = "CIDR block for the VPC"
