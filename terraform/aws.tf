@@ -1,15 +1,9 @@
-data "aws_secretsmanager_secret_version" "creds" {
-  secret_id = "eb-creds"
-}
-
-locals {
-  eb_creds = jsondecode(
-    data.aws_secretsmanager_secret_version.creds.secret_string
-  )
+data "aws_ssm_parameter" "vpc_cidr" {
+  name = "vpc_cidr"
 }
 
 resource "aws_vpc" "tf_vpc" {
-  cidr_block = local.vpc_cidr
+  cidr_block = data.aws_ssm_parameter.vpc_cidr.value
   tags = {
     Name = "tf_vpc"
   }
