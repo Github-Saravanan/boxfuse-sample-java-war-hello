@@ -1,7 +1,3 @@
-data "aws_ssm_parameter" "vpc_cidr" {
-  name = "vpc_cidr"
-}
-
 resource "aws_vpc" "tf_vpc" {
   cidr_block = data.aws_ssm_parameter.vpc_cidr.value
   tags = {
@@ -12,8 +8,8 @@ resource "aws_vpc" "tf_vpc" {
 # Create Subnet 1
 resource "aws_subnet" "tf_subnet_1" {
   vpc_id            = aws_vpc.tf_vpc.id
-  cidr_block        = "10.0.1.0/24"
-  availability_zone = "us-west-2a"
+  cidr_block        = data.aws_ssm_parameter.subnet_1_cidr.value
+  availability_zone = data.aws_ssm_parameter.availability_zone_1.value
   tags = {
     Name = "tf_subnet_1"
   }
@@ -22,8 +18,8 @@ resource "aws_subnet" "tf_subnet_1" {
 # Create Subnet 2
 resource "aws_subnet" "tf_subnet_2" {
   vpc_id            = aws_vpc.tf_vpc.id
-  cidr_block        = "10.0.2.0/24"
-  availability_zone = "us-west-2b"
+  cidr_block        = data.aws_ssm_parameter.subnet_2_cidr.value
+  availability_zone = data.aws_ssm_parameter.availability_zone_2.value
   tags = {
     Name = "tf_subnet_2"
   }
@@ -87,14 +83,14 @@ data "aws_iam_role" "example" {
 }
 
 resource "aws_elastic_beanstalk_application" "tf-test" {
-  name        = "javaapplication"
+  name        = data.aws_ssm_parameter.application_name.value
   description = "Testing tf-elb"
 }
 
 resource "aws_elastic_beanstalk_environment" "tf-test-env" {
-  name                = "javaapplicationenv"
+  name                = data.aws_ssm_parameter.environment_name.value
   application         = aws_elastic_beanstalk_application.tf-test.name
-  solution_stack_name = "64bit Amazon Linux 2 v4.5.3 running Tomcat 9 Corretto 8"
+  solution_stack_name = "64bit Amazon Linux 2 v4.5.3 running ${data.aws_ssm_parameter.language.value}"
   tier                = "WebServer"
   
   setting {
@@ -115,7 +111,7 @@ resource "aws_elastic_beanstalk_environment" "tf-test-env" {
   setting {
     namespace = "aws:ec2:instances"
     name      = "InstanceTypes"
-    value     = "t3.micro"
+    value     = data.aws_ssm_parameter.instance_type.value
   }
   setting {
     namespace = "aws:ec2:vpc"
