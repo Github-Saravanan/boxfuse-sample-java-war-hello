@@ -1,5 +1,5 @@
 resource "aws_vpc" "tf_vpc" {
-  cidr_block = var.vpc_cidr
+  cidr_block = local.vpc_cidr
   tags = {
     Name = "tf_vpc"
   }
@@ -8,7 +8,7 @@ resource "aws_vpc" "tf_vpc" {
 # Create Subnet 1
 resource "aws_subnet" "tf_subnet_1" {
   vpc_id            = aws_vpc.tf_vpc.id
-  cidr_block        = var.subnet_1_cidr
+  cidr_block        = local.subnet_1_cidr
   availability_zone = "us-west-2a"
   tags = {
     Name = "tf_subnet_1"
@@ -18,7 +18,7 @@ resource "aws_subnet" "tf_subnet_1" {
 # Create Subnet 2
 resource "aws_subnet" "tf_subnet_2" {
   vpc_id            = aws_vpc.tf_vpc.id
-  cidr_block        = var.subnet_2_cidr
+  cidr_block        = local.subnet_2_cidr
   availability_zone = "us-west-2b"
   tags = {
     Name = "tf_subnet_2"
@@ -90,7 +90,7 @@ resource "aws_elastic_beanstalk_application" "tf-test" {
 resource "aws_elastic_beanstalk_environment" "tf-test-env" {
   name                = "javaapplicationenv"
   application         = aws_elastic_beanstalk_application.tf-test.name
-  solution_stack_name = "64bit Amazon Linux 2 v4.5.3 running ${var.language}"
+  solution_stack_name = "64bit Amazon Linux 2 v4.5.3 running Tomcat 9 Corretto 8"
   tier                = "WebServer"
   
   setting {
@@ -111,7 +111,7 @@ resource "aws_elastic_beanstalk_environment" "tf-test-env" {
   setting {
     namespace = "aws:ec2:instances"
     name      = "InstanceTypes"
-    value     = var.instance_type
+    value     = local.instance_type
   }
   setting {
     namespace = "aws:ec2:vpc"
