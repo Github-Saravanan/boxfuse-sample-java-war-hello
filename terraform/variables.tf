@@ -8,7 +8,6 @@ locals {
   subnet_1_cidr = local.eb_creds.subnet_1_cidr
   subnet_2_cidr = local.eb_creds.subnet_2_cidr
   instance_type = local.eb_creds.instance_type
-  language      = local.eb_creds.language
 }
 
 variable "vpc_cidr" {
@@ -28,10 +27,5 @@ variable "subnet_2_cidr" {
 
 variable "instance_type" {
   description = "Instance type for Elastic Beanstalk"
-  type        = string
-}
-
-variable "language" {
-  description = "Solution stack name language for Elastic Beanstalk"
   type        = string
 }
