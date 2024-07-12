@@ -8,7 +8,7 @@ resource "aws_vpc" "tf_vpc" {
 # Create Subnet 1
 resource "aws_subnet" "tf_subnet_1" {
   vpc_id            = aws_vpc.tf_vpc.id
-  cidr_block        = local.subnet_1_cidr
+  cidr_block        = "10.0.1.0/24"
   availability_zone = "us-west-2a"
   tags = {
     Name = "tf_subnet_1"
@@ -18,7 +18,7 @@ resource "aws_subnet" "tf_subnet_1" {
 # Create Subnet 2
 resource "aws_subnet" "tf_subnet_2" {
   vpc_id            = aws_vpc.tf_vpc.id
-  cidr_block        = local.subnet_2_cidr
+  cidr_block        = "10.0.2.0/24"
   availability_zone = "us-west-2b"
   tags = {
     Name = "tf_subnet_2"
@@ -111,7 +111,7 @@ resource "aws_elastic_beanstalk_environment" "tf-test-env" {
   setting {
     namespace = "aws:ec2:instances"
     name      = "InstanceTypes"
-    value     = local.instance_type
+    value     = "t3.micro"
   }
   setting {
     namespace = "aws:ec2:vpc"
