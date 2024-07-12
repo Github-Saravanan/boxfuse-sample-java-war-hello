@@ -14,29 +14,24 @@ locals {
 variable "vpc_cidr" {
   description = "CIDR block for the VPC"
   type        = string
-  default     = local.vpc_cidr
 }
 
 variable "subnet_1_cidr" {
   description = "CIDR block for the first Subnet"
   type        = string
-  default     = local.subnet_1_cidr
 }
 
 variable "subnet_2_cidr" {
   description = "CIDR block for the second Subnet"
   type        = string
-  default     = local.subnet_2_cidr
 }
 
 variable "instance_type" {
   description = "Instance type for Elastic Beanstalk"
   type        = string
-  default     = local.instance_type
 }
 
 variable "language" {
   description = "Solution stack name language for Elastic Beanstalk"
   type        = string
-  default     = local.language
 }
